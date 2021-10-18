@@ -1,0 +1,12 @@
+{
+    "api":{
+        "port":8080
+    },
+    "mysql":{
+        "db":"students",
+        "user":"root",
+        "pass":"password",
+        "host":"localhost",
+        "dialect":"mysql"
+    }
+}
