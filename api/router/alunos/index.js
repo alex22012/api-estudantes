@@ -25,7 +25,7 @@ routerAlunos.put("/aluno/:id", async (req, res) => {
     if(isNaN(id))
         res.status(400).json("Id invalido")
     let response = await handler.putStudent(id, nome)
-    console.log(response)
+    res.status(200).json("Atualizado com sucesso")
 })
 routerAlunos.delete("/aluno/:id", async(req, res) => {
     let {id} = req.params
