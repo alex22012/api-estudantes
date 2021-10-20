@@ -3,9 +3,9 @@
         "port":8080
     },
     "mysql":{
-        "db":"students",
         "user":"root",
         "pass":"password",
+        "db":"tarefas",
         "host":"localhost",
         "dialect":"mysql"
     }

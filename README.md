@@ -1,0 +1,1 @@
+Projeto de uma TODO LIST para vários usuários. O usuário pode criar uma conta na aplicação e cadastrar suas tarefas pendentes, bem como removê-las ou concluí-las. Obs: As tarefas de cada usuário são independentes umas das outras, ou seja, as tarefas do usuário x não tem relação com as do usuário y.
