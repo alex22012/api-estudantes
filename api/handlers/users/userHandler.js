@@ -8,8 +8,8 @@ const userHandler = {
         //user -> {email, password}
         return userModel.create(user)
     },
-    getOneUser(id) {
-        return userModel.findOne({raw:true, where:{id}})
+    getOneUser(email, password) {
+        return userModel.findOne({raw:true, where:{email, password}})
     },
     putUser(id, password){
         return userModel.update({password}, {where:{id}})

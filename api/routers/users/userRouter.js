@@ -1,4 +1,5 @@
 const userRouter = require("express").Router()
+const { application } = require("express")
 const userHandler = require("../../handlers/users/userHandler")
 
 userRouter.get("/users", async (req, res) => {
@@ -24,17 +25,21 @@ userRouter.post("/user", async (req, res) => {
         res.status(400).json("Os dados informados são inválidos")
 })
 
-userRouter.get("/user/:id", async (req, res) => {
-    let {id} = req.params
-    if(id !== undefined && !isNaN(id)){
+userRouter.post("/user/login", async (req, res) => {
+    let {email, password} = req.body
+    if(email.length > 10 && typeof email === "string" && password.length >= 8 && typeof password === "string"){
         try {
-            let response = await userHandler.getOneUser(id)
-            res.status(200).json(response)
+            let response = await userHandler.getOneUser(email, password)
+            if(response !== null){
+                res.status(200).json(response.id)
+            }else {
+                res.status(404).json("Usuário não existe")
+            }
         } catch (error) {
             res.status(500).json(error)
         }
     }else
-        res.status(400).json("O id informado está em formato inválido")
+        res.status(400).json("O email informado está em formato inválido")
 })
 
 userRouter.put("/user/:id", async (req, res) => {
@@ -69,5 +74,7 @@ userRouter.delete("/user/:id", async(req, res) => {
         res.status(500).json(error)
     }
 })
+
+
 
 module.exports = userRouter

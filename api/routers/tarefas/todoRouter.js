@@ -11,12 +11,12 @@ todoRouter.get("/todos", async(req, res) => {
 })
 
 todoRouter.post("/todo", async (req, res) => {
-    let {conteudo, status} = req.body
+    let {userId, conteudo, status} = req.body
     //Verify the data
     if(conteudo === undefined || typeof conteudo !== "string")
         res.status(400).json("O conteúdo da tarefa é inválido")
     try {
-        let response = await todoHandler.postTodo({conteudo, status})
+        let response = await todoHandler.postTodo({userId, conteudo, status})
         res.status(200).json(response)
     } catch (error) {
         res.status(500).json(error)
@@ -32,6 +32,19 @@ todoRouter.get("/todo/:id", async(req, res) => {
         let response = await todoHandler.getOneTodo(id)
         res.status(200).json(response)
     } catch (error) {   
+        res.status(500).json(error)
+    }
+})
+
+todoRouter.get("/todos/user/:id", async(req, res) => {
+    let {id} = req.params
+    if(id === undefined || isNaN(id)){
+        res.status(400).json("O id informado está em formato inválido")
+    }
+    try {
+        let response = await todoHandler.getAllOneUserTodo(id)
+        res.status(200).json(response)
+    } catch (error) {
         res.status(500).json(error)
     }
 })

@@ -11,6 +11,9 @@ const todoHandler = {
     getOneTodo(id) {
         return todoModel.findOne({raw:true, where:{id}})
     },
+    getAllOneUserTodo(userId) {
+        return todoModel.findAll({raw:true, where:{userId}})
+    },
     putTodo(id, todo) {
         return todoModel.update(todo, {where:{id}})
     },

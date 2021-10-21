@@ -1,4 +1,5 @@
 const app = require("./config/express")()
 const config = require("config")
-
+const cors = require("cors")
+app.use(cors())
 app.listen(config.get("api.port"), () => console.log("Conectado"))
